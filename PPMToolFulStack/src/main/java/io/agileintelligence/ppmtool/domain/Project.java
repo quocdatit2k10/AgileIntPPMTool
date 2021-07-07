@@ -1,6 +1,8 @@
 package io.agileintelligence.ppmtool.domain;
 
 import javax.persistence.*;
+import javax.validation.constraints.*;
+import com.fasterxml.jackson.annotation.*;
 import java.util.Date;
 
 @Entity
@@ -9,10 +11,17 @@ public class Project {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @NotNull(message = "Project Name is required")
     private String projectName;
+    @NotNull(message = "Project Identifier is required")
+    @Size(min = 4, max = 5, message = "Please ise 4 to 5 characters")
+    @Column(updatable = false, unique = true)
     private String projectIdentifier;
+    @NotNull(message = "Project description is required")
     private String description;
+    @JsonFormat(pattern = "dd-mm-yyyy")
     private Date start_date;
+    @JsonFormat(pattern = "dd-mm-yyyy")
     private Date end_date;
 
     private Date created_At;
