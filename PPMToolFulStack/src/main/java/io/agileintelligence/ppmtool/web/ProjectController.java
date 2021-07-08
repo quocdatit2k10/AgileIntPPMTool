@@ -52,6 +52,6 @@ public class ProjectController {
     @GetMapping("/all")
     public Iterable<Project> findAll() {
 
-        return projectService.getAll();
+        return projectService.findAll();
     }
 }
